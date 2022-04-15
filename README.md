@@ -25,3 +25,14 @@ The data consists of several reviews, each of which has been labeled with -1 or 
 ## Translating reviews to feature vectors
 
 We will convert review texts into feature vectors using a bag of words approach. We start by compiling all the words that appear in a training set of reviews into a dictionary , thereby producing a list of <b>d</b> unique words.
+
+
+We can then transform each of the reviews into a feature vector of length d by setting the i-th coordinate of the feature vector to 1 if the i-th  word in the dictionary appears in the review, or 0 otherwise. For instance, consider two simple documents “Mary loves apples" and “Red apples". In this case, the dictionary is the set {Mary; loves;apples;red}, and the documents are represented as (1;1;1;0) and {0;0;1;1}.
+
+A bag of words model can be easily expanded to include phrases of length m. A unigram model is the case for which m=1. In the example, the unigram dictionary would be {Mary;loves;apples;red}. In the bigram case, m=2, the dictionary is {Mary loves; loves apples; Red apples}, and representations for each sample are {1;1;0, {0;0;1}}. In this section, you will only use the unigram word features. These functions are already implemented for you in the bag of words function.
+
+# Python preliminaries
+In ```util.py```:
+- ```load data ``` function which can be used to read the .tsv files and returns the labels and texts
+- ```bag_of_words``` function is supplied in project1.py, which takes the raw data and returns dictionary of unigram words
+- ```extract_bow_feature_vectors ```  computes a feature matrix of ones and zeros that can be used as the input for the classification algorithms
